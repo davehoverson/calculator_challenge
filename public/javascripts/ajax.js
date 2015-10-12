@@ -1,6 +1,6 @@
 $(function(){
     var operator = "";
-    $(".test").on("click", function() {
+    $(".test").on("click", function(event) {
         event.preventDefault();
         $(".test").removeClass("active");
         $(this).addClass("active");
@@ -29,7 +29,12 @@ $(function(){
             url: "/calculation/getCalculation",
             success: function(data){
                 console.log(data);
+                $(".results").html("<h1>" + data + "</h1>");
             }
+        });
+        $.ajax({
+            type:"DELETE",
+            url: "/calculation/deleteAll"
         })
     }
 });
